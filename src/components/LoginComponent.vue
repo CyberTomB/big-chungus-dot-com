@@ -90,7 +90,6 @@ export default {
 
 #profile-card{
   margin-left: 1rem;
-  margin-right: 1rem;
   box-shadow: 3px 5px 20px darkgray;
   padding-top: 15vh;
   align-items: center;
