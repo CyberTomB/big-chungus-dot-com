@@ -1,12 +1,5 @@
 <template>
-  <div class="row">
-    <div class="col-md-9">
-      <ThreadComponent />
-    </div>
-    <div class="col-md-3">
-      <AdComponent />
-    </div>
-  </div>
+  <ThreadComponent />
 </template>
 
 <script>

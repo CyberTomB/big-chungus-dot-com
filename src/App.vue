@@ -6,15 +6,17 @@
       </div>
       <div class="col-md-9">
         <Navbar />
-        <router-view />
+        <div class="row">
+          <div class="col-md-9">
+            <router-view />
+          </div>
+          <div class="col-md-3">
+            <AdComponent />
+          </div>
+        </div>
       </div>
     </div>
   </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
-  </footer>
 </template>
 
 <script>
