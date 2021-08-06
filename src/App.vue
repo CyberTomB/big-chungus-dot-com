@@ -1,9 +1,14 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
   <main>
-    <router-view />
+    <div class="row flex-grow-1">
+      <div class="col-md-3 my-2">
+        <LoginComponent />
+      </div>
+      <div class="col-md-9">
+        <Navbar />
+        <router-view />
+      </div>
+    </div>
   </main>
   <footer>
     <div class="bg-dark text-light text-center p-4">
