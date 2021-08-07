@@ -7,6 +7,15 @@ class PostsService {
     console.log(res.data)
     AppState.posts = res.data.posts
   }
+
+  async create(body) {
+    const post = {
+      creatorId: AppState.account.id,
+      body: body
+    }
+    const res = await api.post('api/posts', post)
+    AppState.posts.push(res.data)
+  }
 }
 
 export const postsService = new PostsService()
