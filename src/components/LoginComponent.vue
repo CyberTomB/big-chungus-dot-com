@@ -43,6 +43,7 @@
       </div>
     </div>
   </div>
+
   <!-- Profile Card -->
   <div id="profile-card" class="d-flex flex-column bg-light">
     <div v-if="user.isAuthenticated" class="">
@@ -50,7 +51,7 @@
            id="profile-img"
            data-toggle="modal"
            data-target="#exampleModal"
-           class="action"
+           class="action bg-info"
       >
       <div id="profile-name">
         <small class="text-grey">{{ account.class }}</small>
@@ -76,7 +77,7 @@
       Login
     </button>
 
-    <div class="dropdown" v-else>
+    <div class="dropdown text-primary" v-else>
       <div
         class="dropdown-toggle"
         @click="state.dropOpen = !state.dropOpen"
@@ -94,11 +95,16 @@
             Account
           </div>
         </router-link>
+        <router-link :to="{ name: 'Profile'}">
+          <div class="list-group-item list-group-item-action hoverable">
+            Profile
+          </div>
+        </router-link>
         <div
           class="list-group-item list-group-item-action hoverable"
           @click="logout"
         >
-          logout
+          Logout
         </div>
       </div>
     </div>
@@ -146,6 +152,7 @@ export default {
   width: 10rem;
   object-fit: cover;
   margin-bottom: 2rem;
+  border: 6px double lightgray
 }
 
 #profile-card{
