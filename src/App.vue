@@ -7,7 +7,7 @@
       <div class="col-md-9">
         <Navbar />
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-9 py-3">
             <router-view />
           </div>
           <div class="col-md-3">

@@ -20,8 +20,16 @@
       OLDER
     </button>
   </div>
-  <div class="row">
+  <div class="row" id="posts">
     <PostComponent v-for="p in posts" :key="p.id" :post="p" />
+  </div>
+  <div class="row justify-content-between">
+    <button class="col-3 btn btn-info" @click="turnPage('newer')" :disabled="state.page.newer == null">
+      NEWER
+    </button>
+    <button class="col-3 btn btn-info" @click="turnPage('older')" :disabled="state.page.older == null">
+      OLDER
+    </button>
   </div>
 </template>
 
