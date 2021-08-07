@@ -19,8 +19,10 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { adsService } from '../services/AdsService'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     onMounted(async() => {
       try {
         await adsService.getAds()
