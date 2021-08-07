@@ -16,7 +16,7 @@
           <small class="col-4 post-detail">{{ post.createdAt }}</small>
           <small class="col-4 post-detail justify-content-end">Likes: {{ post.likeIds.length }}</small>
           <small class="post-detail col-4">
-            <i @click="likePost(post.id)" class="btn btn-primary mdi" :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}"></i>
+            <i @click="likePost(post.id)" class="text-primary like-button mdi" :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}" v-if="post.creator.id !== account.id"></i>
           </small>
         </div>
       </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { likesService } from '../services/LikesService'
 export default {
@@ -36,7 +37,8 @@ export default {
         } catch (error) {
           console.error(error)
         }
-      }
+      },
+      account: computed(() => AppState.account)
     }
   },
   props: {
@@ -61,6 +63,10 @@ export default {
 </script>
 
 <style scoped>
+.like-button{
+  font-size: 22px;
+  cursor: pointer;
+}
 .post-detail{
   display: flex;
   align-items: flex-end;
