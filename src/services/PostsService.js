@@ -5,6 +5,14 @@ class PostsService {
   async getAll() {
     const res = await api.get('api/posts')
     console.log(res.data)
+    AppState.postsObj = res.data
+    AppState.posts = res.data.posts
+  }
+
+  async getPage(page) {
+    const res = await api.get(AppState.postsObj[page])
+    console.log(res.data)
+    AppState.postsObj = res.data
     AppState.posts = res.data.posts
   }
 
