@@ -1,11 +1,15 @@
 <template>
-  <div class="about">
-    <h1>Your Profile Goes Here</h1>
+  <div class="profile">
+    <ProfileComponent />
   </div>
 </template>
 
 <script>
+import ProfileComponent from '../components/ProfileComponent.vue'
 export default {
-  name: 'AboutPage'
+  name: 'ProfilePage',
+  components: {
+    ProfileComponent
+  }
 }
 </script>

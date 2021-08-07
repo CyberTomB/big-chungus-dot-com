@@ -95,7 +95,7 @@
             Account
           </div>
         </router-link>
-        <router-link :to="{ name: 'Profile'}">
+        <router-link :to="{ name: 'Profile', params: {id: account.id}}">
           <div class="list-group-item list-group-item-action hoverable">
             Profile
           </div>
