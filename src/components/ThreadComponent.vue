@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="card-body border-top col-12">
-      <!-- TODO: Create post function -->
+      <!-- TODO: get new post to render without refresh -->
       <form @submit.prevent="createPost" class="row" action="">
         <small>New Post:</small>
         <div class="input-group">

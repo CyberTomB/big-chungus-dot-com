@@ -14,7 +14,7 @@ class PostsService {
       body: body
     }
     const res = await api.post('api/posts', post)
-    AppState.posts.push(res.data)
+    AppState.posts.unshift(res.data)
   }
 }
 
