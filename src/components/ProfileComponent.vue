@@ -1,5 +1,43 @@
 <template>
-  <h3>You've Reached the Profile Page of: {{ profile.name }}</h3>
+  <div class="row bg-light shadow pb-2 mb-3">
+    <div class="col">
+      <div class="row">
+        <img :src="profile.coverImg" alt="cover image" title="cover image" id="cover-img">
+      </div>
+      <div id="profile-elements" class="row">
+        <div class="col-3" style="min-width: 12rem">
+          <img :src="profile.picture"
+               :alt="profile.name"
+               :title="profile.name"
+               id="profile-img"
+               class=""
+          >
+        </div>
+        <div id="profile-name" class="col-3">
+          <small class="text-grey">{{ profile.class }}</small>
+          <h2>
+            {{ profile.name }}
+          </h2>
+        </div>
+        <div id="profile-links" class="col-6 text-right">
+          <i class="mdi mdi-github">
+          </i>
+          <i class="mdi mdi-linkedin">
+          </i>
+          <i class="mdi mdi-file-account">
+          </i>
+        </div>
+      </div>
+      <div id="profile-bio" class="row justify-content-center pt-5">
+        <div class="col-12">
+          <p>{{ profile.bio }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="posts">
+    <PostComponent v-for="p in posts" :key="p.id" :post="p" />
+  </div>
 </template>
 
 <script>
@@ -22,7 +60,8 @@ export default {
     })
     return {
       state,
-      profile: computed(() => AppState.activeProfile)
+      profile: computed(() => AppState.activeProfile),
+      posts: computed(() => AppState.posts)
     }
   }
 }
@@ -34,8 +73,20 @@ export default {
   height: 10rem;
   width: 10rem;
   object-fit: cover;
-  margin-bottom: 2rem;
-  border: 6px double lightgray
+  border: 6px double lightgray;
+  position: absolute;
+  bottom: 0rem;
+}
+
+#profile-elements{}
+
+#profile-name{
+}
+
+#cover-img{
+  width: 100%;
+  max-height: 10rem;
+  object-fit: cover;
 }
 
 #profile-card{
@@ -47,9 +98,7 @@ export default {
 }
 
 #profile-links{
-  /* TODO: Get links to align left */
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+font-size: 3rem;
 }
 
 .dropdown-menu {

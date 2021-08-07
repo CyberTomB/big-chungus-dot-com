@@ -59,13 +59,13 @@
       </div>
       <div id="profile-links">
         <p class="mdi mdi-github">
-          {{ user.github || ' not linked' }}
+          {{ account.github || ' not linked' }}
         </p>
         <p class="mdi mdi-linkedin">
-          {{ user.linkedin }}
+          {{ account.linkedin }}
         </p>
         <p class="mdi mdi-file-account">
-          {{ user.resume }}
+          {{ account.resume }}
         </p>
       </div>
     </div>
