@@ -9,6 +9,7 @@ class ProfilesService {
       const postsRes = await api.get(profile + '/posts')
       AppState.activeProfile = res.data
       AppState.posts = postsRes.data.posts
+      AppState.postsObj = postsRes.data
     } catch (error) {
       console.error(error)
     }

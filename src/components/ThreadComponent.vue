@@ -1,5 +1,5 @@
 <template>
-  <div class="row" id="new-post-form">
+  <div class="row" id="new-post-form" v-if="user.isAuthenticated">
     <div class="card-body border-top col-12">
       <form @submit.prevent="createPost" class="row" action="">
         <small>New Post:</small>
@@ -38,21 +38,24 @@ import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import PostComponent from '../components/PostComponent.vue'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     const state = reactive({
       newPost: '',
       page: computed(() => AppState.postsObj)
     })
     onMounted(async() => {
       try {
-        await postsService.getAll()
+        if (route.name === 'Home') { await postsService.getAll() }
       } catch (error) {
         console.error(error)
       }
     })
     return {
       state,
+      user: computed(() => AppState.user),
       posts: computed(() => AppState.posts),
       async createPost() {
         await postsService.create(state.newPost)

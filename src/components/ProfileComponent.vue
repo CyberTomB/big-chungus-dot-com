@@ -18,6 +18,8 @@
           <h2>
             {{ profile.name }}
           </h2>
+          <small v-if="profile.graduated">Graduated</small>
+          <small v-else>Undergrad</small>
         </div>
         <div id="profile-links" class="col-6 text-right">
           <i class="mdi mdi-github">
@@ -35,8 +37,8 @@
       </div>
     </div>
   </div>
-  <div class="row" id="posts">
-    <PostComponent v-for="p in posts" :key="p.id" :post="p" />
+  <div id="profile-thread">
+    <ThreadComponent />
   </div>
 </template>
 
@@ -45,7 +47,6 @@ import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
-import { postsService } from '../services/PostsService'
 export default {
   setup() {
     const state = reactive({

@@ -1,7 +1,5 @@
 <template>
   <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-    </router-link>
     <button
       class="navbar-toggler"
       type="button"

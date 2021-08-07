@@ -1,6 +1,6 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
-
+// TODO: Change the way posts are saved in the AppState and access posts by digging into the object
 class PostsService {
   async getAll() {
     const res = await api.get('api/posts')
