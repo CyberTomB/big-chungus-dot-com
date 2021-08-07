@@ -45,6 +45,7 @@ import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
+import { postsService } from '../services/PostsService'
 export default {
   setup() {
     const state = reactive({
