@@ -1,10 +1,12 @@
 <template>
   <div id="profile-card" class="d-flex flex-column bg-light">
-    <div v-if="user.isAuthenticated" class="">
-      <img :src="account.picture"
-           id="profile-img"
-           class="action bg-info"
-      >
+    <div v-if="user.isAuthenticated">
+      <div class="text-center">
+        <img :src="account.picture"
+             id="profile-img"
+             class="action bg-info"
+        >
+      </div>
       <div id="profile-name">
         <small class="text-grey">{{ account.class }}</small>
         <h4>{{ account.name }}</h4>
