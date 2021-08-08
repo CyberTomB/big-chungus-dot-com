@@ -16,7 +16,8 @@
           <small class="col-4 post-detail">{{ post.createdAt }}</small>
           <small class="col-4 post-detail justify-content-end">Likes: {{ post.likeIds.length }}</small>
           <small class="post-detail col-4">
-            <i @click="likePost(post.id)" class="text-primary like-button mdi" :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}" v-if="post.creator.id !== account.id"></i>
+            <i @click="likePost(post.id)" class="text-primary action-btn mdi" :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}" v-if="post.creator.id !== account.id" title="like"></i>
+            <i @click="deletePost(post.id, post.creator.id)" v-if="post.creator.id == account.id" class="text-danger action-btn mdi mdi-delete" title="delete"></i>
           </small>
         </div>
       </div>
@@ -28,6 +29,8 @@
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { likesService } from '../services/LikesService'
+import { postsService } from '../services/PostsService'
+import Pop from '../utils/Notifier'
 export default {
   setup() {
     return {
@@ -36,6 +39,15 @@ export default {
           await likesService.likePost(id)
         } catch (error) {
           console.error(error)
+        }
+      },
+      async deletePost(id, creator) {
+        if (await Pop.confirm()) {
+          try {
+            await postsService.destroy(id, creator)
+          } catch (error) {
+            console.error(error)
+          }
         }
       },
       account: computed(() => AppState.account)
@@ -63,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-.like-button{
+.action-btn{
   font-size: 22px;
   cursor: pointer;
 }

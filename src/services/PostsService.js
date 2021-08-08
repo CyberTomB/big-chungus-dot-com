@@ -24,6 +24,19 @@ class PostsService {
     const res = await api.post('api/posts', post)
     AppState.posts.unshift(res.data)
   }
+
+  async destroy(id, creator) {
+    console.log(creator)
+    if (AppState.account.id === creator) {
+      try {
+        const res = await api.delete('api/posts/' + id)
+        console.log(res)
+        AppState.posts = AppState.posts.filter(p => p.id !== id)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
 }
 
 export const postsService = new PostsService()
