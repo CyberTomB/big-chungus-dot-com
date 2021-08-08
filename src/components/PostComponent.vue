@@ -38,7 +38,7 @@ export default {
         try {
           await likesService.likePost(id)
         } catch (error) {
-          console.error(error)
+          Pop.toast(error)
         }
       },
       async deletePost(id, creator) {
@@ -46,7 +46,7 @@ export default {
           try {
             await postsService.destroy(id, creator)
           } catch (error) {
-            console.error(error)
+            Pop.toast(error)
           }
         }
       },

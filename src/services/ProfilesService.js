@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
 import { api } from './AxiosService'
 
 class ProfilesService {
@@ -9,13 +10,12 @@ class ProfilesService {
       AppState.activeProfile = res.data
       this.getPostsByProfileId(id)
     } catch (error) {
-      console.error(error)
+      Pop.toast(error)
     }
   }
 
   async getAllByQuery(query) {
     const res = await api.get('/api/profiles?query=' + query)
-    console.log(res.data)
     AppState.searchResults.profiles = res.data
   }
 
@@ -25,7 +25,7 @@ class ProfilesService {
       AppState.posts = res.data.posts
       AppState.postsObj = res.data
     } catch (error) {
-      console.error(error)
+      Pop.toast(error)
     }
   }
 }

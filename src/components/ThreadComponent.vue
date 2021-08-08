@@ -39,6 +39,7 @@ import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import PostComponent from '../components/PostComponent.vue'
 import { useRoute } from 'vue-router'
+import Pop from '../utils/Notifier'
 export default {
   setup() {
     const route = useRoute()
@@ -50,7 +51,7 @@ export default {
       try {
         if (route.name === 'Home') { await postsService.getAll() }
       } catch (error) {
-        console.error(error)
+        Pop.toast(error)
       }
     })
     return {
@@ -66,7 +67,7 @@ export default {
           try {
             await postsService.getPage(dir)
           } catch (error) {
-            console.error(error)
+            Pop.toast(error)
           }
         }
       }

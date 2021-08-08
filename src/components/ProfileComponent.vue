@@ -47,6 +47,7 @@ import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
+import Pop from '../utils/Notifier'
 export default {
   setup() {
     const state = reactive({
@@ -57,7 +58,7 @@ export default {
       try {
         await profilesService.getProfileById(route.params.id)
       } catch (error) {
-        console.error(error)
+        Pop.toast(error)
       }
     })
     return {

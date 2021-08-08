@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
 import { api } from './AxiosService'
 // TODO: Change the way posts are saved in the AppState and access posts by digging into the object
 class PostsService {
@@ -32,10 +33,9 @@ class PostsService {
     if (AppState.account.id === creator) {
       try {
         const res = await api.delete('api/posts/' + id)
-        console.log(res)
         AppState.posts = AppState.posts.filter(p => p.id !== id)
       } catch (error) {
-        console.error(error)
+        Pop.toast(error)
       }
     }
   }

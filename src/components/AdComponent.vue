@@ -20,6 +20,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { adsService } from '../services/AdsService'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
+import Pop from '../utils/Notifier'
 export default {
   setup() {
     const route = useRoute()
@@ -27,7 +28,7 @@ export default {
       try {
         await adsService.getAds()
       } catch (error) {
-        console.error(error)
+        Pop.toast(error)
       }
     })
     return {

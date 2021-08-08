@@ -61,7 +61,6 @@ export default {
         AuthService.logout({ returnTo: window.location.origin })
       },
       sendQuery() {
-        console.log('query sent', state.search)
         postsService.getAllByQuery(state.search)
         profilesService.getAllByQuery(state.search)
         router.push({ name: 'SearchResults' })
