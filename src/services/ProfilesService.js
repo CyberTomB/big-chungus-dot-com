@@ -13,6 +13,12 @@ class ProfilesService {
     }
   }
 
+  async getAllByQuery(query) {
+    const res = await api.get('/api/profiles?query=' + query)
+    console.log(res.data)
+    AppState.searchResults.profiles = res.data
+  }
+
   async getPostsByProfileId(id) {
     try {
       const res = await api.get('/api/profiles/' + id + '/posts')

@@ -19,9 +19,18 @@
             HOME
           </router-link>
         </li>
-        <li class="nav-item">
-        </li>
       </ul>
+      <form class="form-inline my-2 my-lg-0" @submit.prevent="sendQuery">
+        <input class="form-control mr-sm-2"
+               type="search"
+               placeholder="Search"
+               aria-label="Search"
+               v-model="state.search"
+        >
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
     </div>
   </nav>
 </template>
@@ -30,20 +39,32 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { postsService } from '../services/PostsService'
+import { profilesService } from '../services/ProfilesService'
+import { useRouter } from 'vue-router'
 export default {
   setup() {
+    const router = useRouter()
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      search: ''
     })
     return {
       state,
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+      search: computed(() => AppState.search),
       async login() {
         AuthService.loginWithPopup()
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      sendQuery() {
+        console.log('query sent', state.search)
+        postsService.getAllByQuery(state.search)
+        profilesService.getAllByQuery(state.search)
+        router.push({ name: 'SearchResults' })
       }
     }
   }
