@@ -23,8 +23,48 @@
               >
             </div>
             <div class="form-group">
-              <label for="account-picture">Image URL:</label>
+              <label for="account-class">Class:</label>
+              <input type="text"
+                     class="form-control"
+                     id="account-class"
+                     placeholder="Big Chungus"
+                     v-model="account.class"
+              >
+            </div>
+            <div class="form-group">
+              <label for="account-github">Github:</label>
+              <input type="text"
+                     class="form-control"
+                     id="account-github"
+                     placeholder="Big Chungus"
+                     v-model="account.github"
+              >
+            </div>
+            <div class="form-group">
+              <label for="account-linkedin">LinkedIn:</label>
+              <input type="text"
+                     class="form-control"
+                     id="account-linkedin"
+                     placeholder="Big Chungus"
+                     v-model="account.linkedin"
+              >
+            </div>
+            <div class="form-group">
+              <label for="account-resume">Resume:</label>
+              <input type="text"
+                     class="form-control"
+                     id="account-resmue"
+                     placeholder="Big Chungus"
+                     v-model="account.resmue"
+              >
+            </div>
+            <div class="form-group">
+              <label for="account-picture">Profile Image URL:</label>
               <input type="text" class="form-control" id="account-picture" placeholder="http://big-chungus.com" v-model="account.picture">
+            </div>
+            <div class="form-group">
+              <label for="account-cover-img">Cover Image URL:</label>
+              <input type="text" class="form-control" id="account-cover-img" placeholder="http://big-chungus.com" v-model="account.coverImg">
             </div>
             <div class="form-group">
               <label for="account-bio">Bio:</label>
@@ -93,6 +133,7 @@
     </div>
   </div>
   <div id="profile-thread">
+    <!-- TODO: Get posts to load on this page -->
     <ThreadComponent />
   </div>
 </template>
@@ -115,6 +156,9 @@ export default {
         bio: '',
         name: ''
       }
+    })
+    onMounted(async() => {
+      profilesService.getPostsByProfileId(AppState.account.id)
     })
     return {
       state,

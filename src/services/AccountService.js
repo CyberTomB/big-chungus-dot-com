@@ -1,5 +1,6 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+import Pop from '../utils/Notifier'
 import { api } from './AxiosService'
 
 class AccountService {
@@ -13,11 +14,15 @@ class AccountService {
   }
 
   async edit(newAccount) {
-    try {
-      const res = await api.put('/account', newAccount)
-      console.log(res.data)
-    } catch (error) {
-      console.error(error)
+    if (AppState.user.isAuthenticated) {
+      try {
+        const res = await api.put('/account', newAccount)
+        console.log(res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    } else {
+      Pop.toast('This is not your account!')
     }
   }
 }

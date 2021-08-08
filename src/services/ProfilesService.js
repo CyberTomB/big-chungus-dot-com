@@ -6,10 +6,18 @@ class ProfilesService {
     try {
       const profile = '/api/profiles/' + id
       const res = await api.get(profile)
-      const postsRes = await api.get(profile + '/posts')
       AppState.activeProfile = res.data
-      AppState.posts = postsRes.data.posts
-      AppState.postsObj = postsRes.data
+      this.getPostsByProfileId(id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async getPostsByProfileId(id) {
+    try {
+      const res = await api.get('/api/profiles/' + id + '/posts')
+      AppState.posts = res.data.posts
+      AppState.postsObj = res.data
     } catch (error) {
       console.error(error)
     }
