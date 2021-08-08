@@ -1,56 +1,8 @@
 <template>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Update Profile
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form @submit.prevent="updateAccount">
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="account-name">Name:</label>
-              <input type="text"
-                     class="form-control"
-                     id="account-name"
-                     placeholder="Big Chungus"
-                     v-model="state.newAccount.name"
-              >
-            </div>
-            <div class="form-group">
-              <label for="account-picture">Image URL:</label>
-              <input type="text" class="form-control" id="account-picture" placeholder="http://big-chungus.com" v-model="state.newAccount.picture">
-            </div>
-            <div class="form-group">
-              <label for="account-bio">Bio:</label>
-              <textarea class="form-control" id="account-bio" rows="3" v-model="state.newAccount.bio"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary">
-              Save changes
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Profile Card -->
   <div id="profile-card" class="d-flex flex-column bg-light">
     <div v-if="user.isAuthenticated" class="">
       <img :src="account.picture"
            id="profile-img"
-           data-toggle="modal"
-           data-target="#exampleModal"
            class="action bg-info"
       >
       <div id="profile-name">
@@ -115,16 +67,10 @@
 import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
-import { accountService } from '../services/AccountService'
 export default {
   setup() {
     const state = reactive({
-      dropOpen: false,
-      newAccount: {
-        picture: '',
-        bio: '',
-        name: ''
-      }
+      dropOpen: false
     })
     return {
       state,
@@ -135,10 +81,6 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
-      },
-      async updateAccount() {
-        console.log('account updated', state.newAccount)
-        await accountService.edit(state.newAccount)
       }
     }
   }

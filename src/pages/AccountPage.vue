@@ -1,16 +1,16 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div>
+  <AccountComponent />
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import AccountComponent from '../components/AccountComponent.vue'
 export default {
   name: 'Account',
+  components: {
+    AccountComponent
+  },
   setup() {
     return {
       account: computed(() => AppState.account)

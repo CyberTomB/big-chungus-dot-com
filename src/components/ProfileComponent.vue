@@ -80,11 +80,6 @@ export default {
   bottom: 0rem;
 }
 
-#profile-elements{}
-
-#profile-name{
-}
-
 #cover-img{
   width: 100%;
   max-height: 10rem;
