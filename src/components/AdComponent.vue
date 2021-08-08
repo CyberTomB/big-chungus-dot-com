@@ -19,11 +19,9 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { adsService } from '../services/AdsService'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
 import Pop from '../utils/Notifier'
 export default {
   setup() {
-    const route = useRoute()
     onMounted(async() => {
       try {
         await adsService.getAds()

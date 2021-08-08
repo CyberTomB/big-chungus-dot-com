@@ -17,6 +17,7 @@ class AccountService {
     if (AppState.user.isAuthenticated) {
       try {
         const res = await api.put('/account', newAccount)
+        logger.log(res.data)
       } catch (error) {
         Pop.toast(error)
       }
