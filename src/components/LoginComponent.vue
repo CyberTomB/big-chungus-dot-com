@@ -12,7 +12,7 @@
         <h4>{{ account.name }}</h4>
       </div>
       <div id="profile-links">
-        <router-link v-if="!account.github" class="mdi mdi-github action" :to="{ name: 'Account' }">
+        <router-link v-if="!account.github" class="mdi mdi-github action" :to="{ name: 'Account'}">
           <em> Add Github</em>
         </router-link>
         <a v-else
@@ -26,7 +26,7 @@
           {{ ' ' + account.github }}
         </a>
         <br>
-        <router-link v-if="!account.linkedin" class="mdi mdi-linkedin action text-warning" :to="{ name: 'Account' }">
+        <router-link v-if="!account.linkedin" class="mdi mdi-linkedin action text-warning" :to="{ name: 'Account',params: {id: account.id} }">
           <em> Add LinkedIn</em>
         </router-link>
         <a v-else
@@ -40,7 +40,7 @@
           {{ ' ' + account.linkedin }}
         </a>
         <br>
-        <router-link v-if="!account.resume" class="mdi mdi-file-account action text-warning" :to="{ name: 'Account' }">
+        <router-link v-if="!account.resume" class="mdi mdi-file-account action text-warning" :to="{ name: 'Account', params: {id: account.id} }">
           <em> Add Resume</em>
         </router-link>
         <a v-else
@@ -76,7 +76,7 @@
         :class="{ show: state.dropOpen }"
         @click="state.dropOpen = false"
       >
-        <router-link :to="{ name: 'Account' }">
+        <router-link :to="{ name: 'Account', params: {id: account.id} }">
           <div class="list-group-item list-group-item-action hoverable">
             Account
           </div>

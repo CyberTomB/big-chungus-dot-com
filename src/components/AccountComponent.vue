@@ -32,6 +32,14 @@
               >
             </div>
             <div class="form-group">
+              <label for="account-graduated">Graduated:</label>
+              <input type="checkbox"
+                     class="form-control"
+                     id="account-graduated"
+                     v-model="account.graduated"
+              >
+            </div>
+            <div class="form-group">
               <label for="account-github">Github:</label>
               <input type="text"
                      class="form-control"
@@ -134,7 +142,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from '@vue/runtime-core'
+import { computed, onMounted, reactive, watch } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
@@ -143,6 +151,7 @@ import $ from 'jquery'
 import Pop from '../utils/Notifier'
 export default {
   setup() {
+    const route = useRoute()
     const state = reactive({
       dropOpen: false,
       editorOn: false,
@@ -153,11 +162,15 @@ export default {
       }
     })
     onMounted(async() => {
-      profilesService.getPostsByProfileId(AppState.account.id)
+      try {
+        await profilesService.getProfileById(route.params.id)
+      } catch (error) {
+        Pop.toast(error)
+      }
     })
     return {
       state,
-      profile: computed(() => AppState.account),
+      profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
       async updateAccount() {
