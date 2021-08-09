@@ -16,7 +16,15 @@
           <small class="col-4 post-detail">{{ post.createdAt }}</small>
           <small class="col-4 post-detail justify-content-end">Likes: {{ post.likeIds.length }}</small>
           <small class="post-detail col-4">
-            <i @click="likePost(post.id)" class="text-primary action-btn mdi" :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}" v-if="post.creator.id !== account.id" title="like"></i>
+            <div v-if="account.id">
+              <i
+                @click="likePost(post.id)"
+                class="text-primary action-btn mdi"
+                :class="{'mdi-thumb-up-outline': !isLiked, 'mdi-thumb-up': isLiked}"
+                v-if="post.creator.id !== account.id"
+                title="like"
+              ></i>
+            </div>
             <i @click="deletePost(post.id, post.creator.id)" v-if="post.creator.id == account.id" class="text-danger action-btn mdi mdi-delete" title="delete"></i>
           </small>
         </div>

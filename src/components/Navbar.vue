@@ -13,10 +13,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
+        <img alt="logo" src="src\assets\img\bigchungus.png" height="45" />
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
-            <img alt="logo" src="src\assets\img\bigchungus.png" height="45" />
             HOME
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Account' }" class="nav-link">
+            ACCOUNT
           </router-link>
         </li>
       </ul>
