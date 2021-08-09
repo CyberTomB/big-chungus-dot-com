@@ -142,16 +142,14 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive, watch } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
-import { useRoute } from 'vue-router'
 import { accountService } from '../services/AccountService'
 import $ from 'jquery'
 import Pop from '../utils/Notifier'
 export default {
   setup() {
-    const route = useRoute()
     const state = reactive({
       dropOpen: false,
       editorOn: false,
@@ -161,16 +159,17 @@ export default {
         name: ''
       }
     })
+    // NOTE: Not sure how to get this function to wait for AppState.account to update itself.
     onMounted(async() => {
       try {
-        await profilesService.getProfileById(route.params.id)
+        await profilesService.getProfileById(AppState.account.id)
       } catch (error) {
         Pop.toast(error)
       }
     })
     return {
       state,
-      profile: computed(() => AppState.activeProfile),
+      profile: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
       async updateAccount() {
@@ -178,8 +177,8 @@ export default {
           await accountService.edit(AppState.account)
           $('#edit-profile').modal('hide')
           Pop.toast('Created!', 'success')
-        } catch (e) {
-          Pop.toast(e, 'error')
+        } catch (error) {
+          Pop.toast(error, 'error')
         }
       }
     }
