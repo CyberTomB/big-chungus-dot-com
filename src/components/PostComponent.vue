@@ -64,7 +64,10 @@ export default {
     isLiked() {
       let value = false
       const accountId = AppState.account.id
-      const found = this.post.likeIds.find(x => x === accountId)
+      let found
+      if (this.post.likeIds !== null) {
+        found = this.post.likeIds.find(x => x === accountId)
+      }
       if (found !== undefined) {
         value = true
       }

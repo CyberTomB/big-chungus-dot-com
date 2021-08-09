@@ -14,7 +14,7 @@
           >
         </div>
         <div id="profile-name" class="col-3">
-          <small class="text-grey">{{ profile.class }}</small>
+          <small class="text-grey">{{ profile.class || 'Class unspecified' }}</small>
           <h2>
             {{ profile.name }}
           </h2>
@@ -22,12 +22,7 @@
           <small v-else>Undergrad</small>
         </div>
         <div id="profile-links" class="col-6 text-right">
-          <i class="mdi mdi-github">
-          </i>
-          <i class="mdi mdi-linkedin">
-          </i>
-          <i class="mdi mdi-file-account">
-          </i>
+          <ProfileLinksComponent :profile="profile" />
         </div>
       </div>
       <div id="profile-bio" class="row justify-content-center pt-5">

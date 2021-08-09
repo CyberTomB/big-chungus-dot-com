@@ -4,7 +4,7 @@
       <div class="text-center">
         <img :src="account.picture"
              id="profile-img"
-             class="action bg-info"
+             class="bg-info"
         >
       </div>
       <div id="profile-name">
@@ -12,15 +12,47 @@
         <h4>{{ account.name }}</h4>
       </div>
       <div id="profile-links">
-        <p class="mdi mdi-github">
-          {{ account.github || ' not linked' }}
-        </p>
-        <p class="mdi mdi-linkedin">
-          {{ account.linkedin }}
-        </p>
-        <p class="mdi mdi-file-account">
-          {{ account.resume }}
-        </p>
+        <router-link v-if="!account.github" class="mdi mdi-github action" :to="{ name: 'Account' }">
+          <em> Add Github</em>
+        </router-link>
+        <a v-else
+           class="mdi mdi-github action"
+           :href="account.github || 'https://github.com'"
+           target="_blank"
+           alt="github"
+           :title="account.github || 'github'"
+           rel="external"
+        >
+          {{ ' ' + account.github }}
+        </a>
+        <br>
+        <router-link v-if="!account.linkedin" class="mdi mdi-linkedin action text-warning" :to="{ name: 'Account' }">
+          <em> Add LinkedIn</em>
+        </router-link>
+        <a v-else
+           class="mdi mdi-linkedin action"
+           :href="account.linkedin"
+           target="_blank"
+           alt="linkedin"
+           :title="account.linkedin || 'linkedin'"
+           rel="external"
+        >
+          {{ ' ' + account.linkedin }}
+        </a>
+        <br>
+        <router-link v-if="!account.resume" class="mdi mdi-file-account action text-warning" :to="{ name: 'Account' }">
+          <em> Add Resume</em>
+        </router-link>
+        <a v-else
+           class="mdi mdi-file-account action"
+           :href="account.resume"
+           target="_blank"
+           alt="resume"
+           :title="account.resume || 'resume'"
+           rel="external"
+        >
+          {{ ' ' + account.resume }}
+        </a>
       </div>
     </div>
     <button
@@ -47,11 +79,6 @@
         <router-link :to="{ name: 'Account' }">
           <div class="list-group-item list-group-item-action hoverable">
             Account
-          </div>
-        </router-link>
-        <router-link :to="{ name: 'Profile', params: {id: account.id}}">
-          <div class="list-group-item list-group-item-action hoverable">
-            Profile
           </div>
         </router-link>
         <div

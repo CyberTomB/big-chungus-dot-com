@@ -107,12 +107,7 @@
           <small v-else>Undergrad</small>
         </div>
         <div id="profile-links" class="col-6 text-right">
-          <i class="mdi mdi-github">
-          </i>
-          <i class="mdi mdi-linkedin">
-          </i>
-          <i class="mdi mdi-file-account">
-          </i>
+          <ProfileLinksComponent :profile="profile" />
         </div>
       </div>
       <div id="profile-bio" class="row justify-content-center pt-5">
