@@ -159,7 +159,11 @@ export default {
         name: ''
       }
     })
-    // NOTE: Not sure how to get this function to wait for AppState.account to update itself.
+    // NOTE: Not sure how to get this function to wait for AppState.account to update itself
+
+    // watch ( () => Appstate.account.id, async newParams => {
+    // await function
+    // })
     onMounted(async() => {
       try {
         await profilesService.getProfileById(AppState.account.id)
