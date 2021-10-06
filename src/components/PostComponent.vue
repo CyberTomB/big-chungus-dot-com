@@ -65,6 +65,7 @@ export default {
     post: {
       type: Object,
       required: true,
+      // Avoids empty object referencing on load
       default: () => { return { likeIds: [] } }
     }
   },

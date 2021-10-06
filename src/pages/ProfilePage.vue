@@ -1,6 +1,8 @@
 <template>
   <div class="profile">
     <ProfileComponent />
+    <TestComponent btn-name="test" />
+    <TestComponent />
   </div>
 </template>
 
@@ -13,3 +15,5 @@ export default {
   }
 }
 </script>
+
+    TestComponent
